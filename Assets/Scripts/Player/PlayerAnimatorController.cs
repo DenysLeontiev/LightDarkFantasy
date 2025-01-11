@@ -12,6 +12,7 @@ public class PlayerAnimatorController : MonoBehaviour
 
     private readonly int isRunningHash = Animator.StringToHash("isRunning");
     private readonly int isFallingHash = Animator.StringToHash("isFalling");
+    private readonly int isClimbingHash = Animator.StringToHash("isClimbing");
     private readonly int isJumpingHash = Animator.StringToHash("shouldJump");
     private readonly int isAttackingHash = Animator.StringToHash("shouldAttack");
     private readonly int isRunAttackingHash = Animator.StringToHash("shouldRunAttack");
@@ -30,6 +31,8 @@ public class PlayerAnimatorController : MonoBehaviour
     private void Update()
     {
         playerAnimator.SetBool(isFallingHash, playerMovement.IsFalling);
+
+        playerAnimator.SetBool(isClimbingHash, playerMovement.IsClimbing);
     }
 
     private void InputReader_OnMovementEvent(Vector2 moveDir)
@@ -40,7 +43,7 @@ public class PlayerAnimatorController : MonoBehaviour
 
     private void InputReader_OnJumpEvent(bool isJumping)
     {
-        if(isJumping)
+        if(isJumping && playerMovement.IsClimbing == false)
         {
             playerAnimator.SetTrigger(isJumpingHash);
         }
