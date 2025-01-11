@@ -10,6 +10,7 @@ public class InputReader : ScriptableObject, IPlayerActions
 {
     public event Action<Vector2> OnMovementEvent;
     public event Action<bool> OnJumpEvent;
+    public event Action<bool> OnAttackEvent;
 
     private Controls controls;
 
@@ -40,6 +41,18 @@ public class InputReader : ScriptableObject, IPlayerActions
         else if(context.canceled)
         {
             OnJumpEvent?.Invoke(false);
+        }
+    }
+
+    public void OnAttack(InputAction.CallbackContext context)
+    {
+        if(context.performed)
+        {
+            OnAttackEvent?.Invoke(true);
+        }
+        else
+        {
+            OnAttackEvent?.Invoke(false);
         }
     }
 }

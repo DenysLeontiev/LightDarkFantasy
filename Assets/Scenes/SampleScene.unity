@@ -7670,6 +7670,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   sphereJumpCheckRadius: 0.1
+  timeBetweenAttacks: 0.5
 --- !u!70 &1871584115
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
