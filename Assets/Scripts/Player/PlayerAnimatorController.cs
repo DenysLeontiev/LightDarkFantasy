@@ -26,6 +26,13 @@ public class PlayerAnimatorController : MonoBehaviour
         inputReader.OnAttackEvent += InputReader_OnAttackEvent;
     }
 
+    private void OnDisable()
+    {
+        inputReader.OnMovementEvent -= InputReader_OnMovementEvent;
+        inputReader.OnJumpEvent -= InputReader_OnJumpEvent;
+        inputReader.OnAttackEvent -= InputReader_OnAttackEvent;
+    }
+
 
     private void Update()
     {

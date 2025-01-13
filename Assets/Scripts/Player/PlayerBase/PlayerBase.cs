@@ -44,6 +44,12 @@ public abstract class PlayerBase : MonoBehaviour
         inputReader.OnJumpEvent += InputReader_OnJumpEvent;
     }
 
+    private void OnDisable()
+    {
+        inputReader.OnMovementEvent -= InputReader_OnMovementEvent;
+        inputReader.OnJumpEvent -= InputReader_OnJumpEvent;
+    }
+
     private void InputReader_OnJumpEvent(bool hasJumped)
     {
         if (hasJumped && IsGrounded())

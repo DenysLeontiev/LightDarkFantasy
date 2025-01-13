@@ -15,6 +15,11 @@ public class InputReader : ScriptableObject, IPlayerActions
 
     private Controls controls;
 
+    private void Awake()
+    {
+        Debug.Log("gere");
+    }
+
     private void OnEnable()
     {
         if(controls == null)
