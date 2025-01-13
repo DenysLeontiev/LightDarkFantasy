@@ -42,7 +42,7 @@ public class PlayerAnimatorController : MonoBehaviour
 
     private void InputReader_OnJumpEvent(bool isJumping)
     {
-        if(isJumping && playerMovement.IsClimbing == false)
+        if(isJumping && playerMovement.IsClimbing == false && playerMovement.IsGrounded() == true)
         {
             playerAnimator.SetTrigger(isJumpingHash);
         }
