@@ -5,5 +5,5 @@ using UnityEngine;
 public enum GameScene
 {
     MenuScene,
-    TutorialScene
+    KnightTutorialScene
 }

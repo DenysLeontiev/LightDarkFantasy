@@ -12,7 +12,7 @@ public class MenuButtonsHandler : MonoBehaviour
     {
         startGameButton.onClick.AddListener(() =>
         {
-            SceneManager.LoadScene(GameScene.TutorialScene.ToString());
+            SceneManager.LoadScene(GameScene.KnightTutorialScene.ToString());
         });
     }
 }
