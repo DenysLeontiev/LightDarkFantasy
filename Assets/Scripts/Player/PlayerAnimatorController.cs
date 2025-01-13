@@ -7,7 +7,7 @@ public class PlayerAnimatorController : MonoBehaviour
     [SerializeField] private InputReader inputReader;
 
     private Animator playerAnimator;
-    private PlayerMovement playerMovement;
+    private Knight playerMovement;
 
     private readonly int isRunningHash = Animator.StringToHash("isRunning");
     private readonly int isFallingHash = Animator.StringToHash("isFalling");
@@ -19,7 +19,7 @@ public class PlayerAnimatorController : MonoBehaviour
     private void Start()
     {
         playerAnimator = GetComponentInChildren<Animator>();
-        playerMovement = GetComponent<PlayerMovement>();
+        playerMovement = GetComponent<Knight>();
 
         inputReader.OnMovementEvent += InputReader_OnMovementEvent;
         inputReader.OnJumpEvent += InputReader_OnJumpEvent;

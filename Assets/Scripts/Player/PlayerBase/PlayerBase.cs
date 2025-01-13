@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public abstract class PlayerBase : MonoBehaviour
 {
     public bool IsIdle { get; private set; } = true; // because when initial event is not fired, we have wrong state
     public bool IsMoving { get; private set; }
@@ -13,11 +13,11 @@ public class PlayerMovement : MonoBehaviour
     [Header("References")]
     [SerializeField] private Transform groundCheckTransform;
     [SerializeField] private InputReader inputReader;
-    [SerializeField] private LayerMask isGroundedLayerMask;
+    [SerializeField] private LayerMask isGroundedLayerMask; // Ground, Obstacle
 
     [Header("Movement Configs")]
-    [SerializeField] private float movementSpeed = 1f;
-    [SerializeField] private float jumpSpeed = 1f;
+    [SerializeField] private float movementSpeed = 2.5f;
+    [SerializeField] private float jumpSpeed = 5f;
     [SerializeField] private float sphereJumpCheckRadius = 0.1f;
     [SerializeField] private float timeBetweenAttacks = 0.5f;
     [SerializeField] private float climbLadderSpeed = 40f;
@@ -46,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void InputReader_OnJumpEvent(bool hasJumped)
     {
-        if(hasJumped && IsGrounded())
+        if (hasJumped && IsGrounded())
         {
             HandleJump();
         }
@@ -88,7 +88,7 @@ public class PlayerMovement : MonoBehaviour
     {
         playerRigidbody2D.velocity = new Vector2(playerRigidbody2D.velocity.x, jumpSpeed);
     }
-    
+
     private void HandleClimbing()
     {
         if (IsClimbing)
@@ -100,11 +100,11 @@ public class PlayerMovement : MonoBehaviour
         {
             playerRigidbody2D.gravityScale = 1f;
         }
-    }    
+    }
 
     private void Flip()
     {
-        if(isFacingRight && moveInput.x < 0f || !isFacingRight && moveInput.x > 0f)
+        if (isFacingRight && moveInput.x < 0f || !isFacingRight && moveInput.x > 0f)
         {
             isFacingRight = !isFacingRight;
             Vector3 localScale = transform.localScale;
@@ -125,4 +125,6 @@ public class PlayerMovement : MonoBehaviour
         IsIdle = moveDir.magnitude == 0;
         IsMoving = moveDir.magnitude != 0;
     }
+
+    public abstract void Attack();
 }
