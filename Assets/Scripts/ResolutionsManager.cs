@@ -40,7 +40,8 @@ public class ResolutionsManager : MonoBehaviour
         List<string> options = new List<string>();
         for (int i = 0; i < filteredResolutions.Count; i++)
         {
-            string resolutionOption = filteredResolutions[i].width + "x" + filteredResolutions[i].height + " " + filteredResolutions[i].refreshRateRatio.value.ToString("0.##") + " Hz";
+            string refreshRateRadio = filteredResolutions[i].refreshRateRatio.value.ToString("0.##") + " Hz";
+            string resolutionOption = filteredResolutions[i].width + "x" + filteredResolutions[i].height;
             options.Add(resolutionOption);
             if (filteredResolutions[i].width == Screen.width && filteredResolutions[i].height == Screen.height && (float)filteredResolutions[i].refreshRateRatio.value == currentRefreshRate)
             {
@@ -52,6 +53,11 @@ public class ResolutionsManager : MonoBehaviour
         resolutionDropdown.value = currentResolutionIndex = 0;
         resolutionDropdown.RefreshShownValue();
         SetResolution(currentResolutionIndex);
+
+        resolutionDropdown.onValueChanged.AddListener((int resolutionIndex) =>
+        {
+            SetResolution(resolutionIndex);
+        });
     }
 
     public void SetResolution(int resolutionIndex)
