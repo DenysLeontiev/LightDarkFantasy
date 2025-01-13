@@ -132,5 +132,6 @@ public abstract class PlayerBase : MonoBehaviour
         IsMoving = moveDir.magnitude != 0;
     }
 
+    // Called in animation event
     public abstract void Attack();
 }
