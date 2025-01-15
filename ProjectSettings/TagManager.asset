@@ -17,7 +17,7 @@ TagManager:
   - 
   - Obstacle
   - Ladder
-  - 
+  - Enemy
   - 
   - 
   - 
@@ -43,6 +43,9 @@ TagManager:
     locked: 0
   - name: Tiles
     uniqueID: 1667924269
+    locked: 0
+  - name: Enemy
+    uniqueID: 371949445
     locked: 0
   - name: Player
     uniqueID: 1238414271

@@ -8,6 +8,7 @@ public class PlayerAnimatorController : MonoBehaviour
 
     private Animator playerAnimator;
     private Knight playerMovement;
+    private Health playerHealth;
 
     private readonly int isRunningHash = Animator.StringToHash("isRunning");
     private readonly int isFallingHash = Animator.StringToHash("isFalling");
@@ -15,15 +16,19 @@ public class PlayerAnimatorController : MonoBehaviour
     private readonly int isJumpingHash = Animator.StringToHash("shouldJump");
     private readonly int isAttackingHash = Animator.StringToHash("shouldAttack");
     private readonly int isRunAttackingHash = Animator.StringToHash("shouldRunAttack");
+    private readonly int getHitHash = Animator.StringToHash("getHit");
 
     private void Start()
     {
         playerAnimator = GetComponentInChildren<Animator>();
         playerMovement = GetComponent<Knight>();
+        playerHealth = GetComponent<Health>();
 
         inputReader.OnMovementEvent += InputReader_OnMovementEvent;
         inputReader.OnJumpEvent += InputReader_OnJumpEvent;
         inputReader.OnAttackEvent += InputReader_OnAttackEvent;
+
+        playerHealth.OnDamageTaken += PlayerHealth_OnDamageTaken;
     }
 
     private void OnDisable()
@@ -31,6 +36,8 @@ public class PlayerAnimatorController : MonoBehaviour
         inputReader.OnMovementEvent -= InputReader_OnMovementEvent;
         inputReader.OnJumpEvent -= InputReader_OnJumpEvent;
         inputReader.OnAttackEvent -= InputReader_OnAttackEvent;
+
+        playerHealth.OnDamageTaken -= PlayerHealth_OnDamageTaken;
     }
 
 
@@ -77,5 +84,11 @@ public class PlayerAnimatorController : MonoBehaviour
             playerAnimator.SetTrigger(isRunAttackingHash);
             playerMovement.ResetTimeSinceLastAttack();
         }
+    }
+
+    private void PlayerHealth_OnDamageTaken(object sender, System.EventArgs e)
+    {
+        playerAnimator.SetTrigger(getHitHash);
+        Debug.Log("Get Hit");
     }
 }
