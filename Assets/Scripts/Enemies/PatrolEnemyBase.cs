@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public abstract class PatrolEnemyBase : MonoBehaviour
@@ -43,11 +44,15 @@ public abstract class PatrolEnemyBase : MonoBehaviour
 
         attackPoint = transform.Find("AttackPoint");
 
-        state = EnemyState.Walk;
+        state = EnemyState.Idle;
 
         currentWaypointIndex = Random.Range(0, waypoints.Count - 1);
-        targetWaypoint = waypoints[currentWaypointIndex];
-        targetPosition = new Vector2(targetWaypoint.position.x, transform.position.y);
+
+        if(waypoints.Count != 0)
+        {
+            targetWaypoint = waypoints[currentWaypointIndex];
+            targetPosition = new Vector2(targetWaypoint.position.x, transform.position.y);
+        }
         timeSinceLastAttack = float.MaxValue; // so we can attack right away
 
         attackTarget = FindObjectOfType<PlayerBase>();
@@ -108,7 +113,7 @@ public abstract class PatrolEnemyBase : MonoBehaviour
     private void HandleIdleState()
     {
         timeAtWayPoint += Time.deltaTime;
-        if (timeAtWayPoint > dwellTimeAtWayPoint)
+        if (timeAtWayPoint > dwellTimeAtWayPoint && targetWaypoint != null)
         {
             timeAtWayPoint = 0f;
             state = EnemyState.Walk;
@@ -118,6 +123,11 @@ public abstract class PatrolEnemyBase : MonoBehaviour
 
     private void HandleWalkState()
     {
+        if(targetWaypoint == null)
+        {
+            return;
+        }
+
         Vector2 targetPosition = new Vector2(targetWaypoint.position.x, transform.position.y);
         transform.position = Vector2.MoveTowards(transform.position, targetPosition, walkSpeed * Time.deltaTime);
         FaceTowards(targetPosition);
