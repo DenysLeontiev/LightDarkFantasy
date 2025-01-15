@@ -5,14 +5,20 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
+    public bool IsDead { get; private set; } = false;
+
     public event EventHandler OnDamageTaken;
+    public event EventHandler OnDied;
 
     [SerializeField] private int maxHealthAmount = 3;
 
     private int currentHealthAmount;
 
+    private Collider2D collider2D;
+
     private void Start()
     {
+        collider2D = GetComponent<Collider2D>();
         currentHealthAmount = maxHealthAmount;
     }
 
@@ -33,6 +39,8 @@ public class Health : MonoBehaviour
 
     private void Die()
     {
-        Destroy(gameObject);
+        OnDied?.Invoke(this, EventArgs.Empty);
+        collider2D.enabled = false;
+        IsDead = true;
     }
 }

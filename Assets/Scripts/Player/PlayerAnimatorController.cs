@@ -17,6 +17,7 @@ public class PlayerAnimatorController : MonoBehaviour
     private readonly int isAttackingHash = Animator.StringToHash("shouldAttack");
     private readonly int isRunAttackingHash = Animator.StringToHash("shouldRunAttack");
     private readonly int getHitHash = Animator.StringToHash("getHit");
+    private readonly int dieHash = Animator.StringToHash("die");
 
     private void Start()
     {
@@ -29,6 +30,7 @@ public class PlayerAnimatorController : MonoBehaviour
         inputReader.OnAttackEvent += InputReader_OnAttackEvent;
 
         playerHealth.OnDamageTaken += PlayerHealth_OnDamageTaken;
+        playerHealth.OnDied += PlayerHealth_OnDied;
     }
 
     private void OnDisable()
@@ -38,13 +40,13 @@ public class PlayerAnimatorController : MonoBehaviour
         inputReader.OnAttackEvent -= InputReader_OnAttackEvent;
 
         playerHealth.OnDamageTaken -= PlayerHealth_OnDamageTaken;
+        playerHealth.OnDied -= PlayerHealth_OnDied;
     }
 
 
     private void Update()
     {
         playerAnimator.SetBool(isFallingHash, playerMovement.IsFalling);
-
         playerAnimator.SetBool(isClimbingHash, playerMovement.IsClimbing);
     }
 
@@ -89,6 +91,10 @@ public class PlayerAnimatorController : MonoBehaviour
     private void PlayerHealth_OnDamageTaken(object sender, System.EventArgs e)
     {
         playerAnimator.SetTrigger(getHitHash);
-        Debug.Log("Get Hit");
+    }
+
+    private void PlayerHealth_OnDied(object sender, System.EventArgs e)
+    {
+        playerAnimator.SetTrigger(dieHash);
     }
 }
