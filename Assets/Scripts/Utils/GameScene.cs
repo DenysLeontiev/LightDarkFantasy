@@ -5,5 +5,7 @@ using UnityEngine;
 public enum GameScene
 {
     MenuScene,
-    KnightTutorialScene
+    KnightTutorialScene,
+    KnightFirstLevel,
+    KnightSecondLevel
 }
