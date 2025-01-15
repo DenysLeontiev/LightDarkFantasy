@@ -70,7 +70,6 @@ public abstract class PatrolEnemyBase : MonoBehaviour
             hasDiedAnimationPlayed = false;
         }
 
-
         if (enemyHealth.IsDead)
         {
             return;
