@@ -1166,7 +1166,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1933,6 +1933,7 @@ GameObject:
   - component: {fileID: 1040653894}
   - component: {fileID: 1040653896}
   - component: {fileID: 1040653895}
+  - component: {fileID: 1040653897}
   m_Layer: 5
   m_Name: SettingsPanel
   m_TagString: Untagged
@@ -2001,6 +2002,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1040653893}
   m_CullTransparentMesh: 1
+--- !u!114 &1040653897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1040653893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e2e9830e54b74249b85273f39c211e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  brightnessSlider: {fileID: 608042742}
 --- !u!1 &1142353757
 GameObject:
   m_ObjectHideFlags: 0
@@ -3180,7 +3194,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   brightnessImage: {fileID: 1759164507}
-  brightnessSlider: {fileID: 608042742}
   initialBrightnessValue: 1
   maxBrightnessValue: 0.95
   minBrightnessValue: 0

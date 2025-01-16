@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,17 +9,19 @@ public class BrightnessManager : MonoBehaviour
 {
     public static BrightnessManager Instance { get; private set; }
 
+    public float BrightnessValue { get; private set; }
+
     [SerializeField] private Image brightnessImage;
-    [SerializeField] private Slider brightnessSlider;
 
     [SerializeField] private float initialBrightnessValue = 1f;
     [SerializeField] private float maxBrightnessValue = 0.9f;
     [SerializeField] private float minBrightnessValue = 0f;
 
-    private string sliderValueKey = "sliderValueKey";
-
     private void Awake()
     {
+        BrightnessValue = initialBrightnessValue;
+        SetImageBrightness(initialBrightnessValue);
+
         if (Instance != null && Instance != this) // Destroy another object
         {
             Destroy(gameObject);
@@ -30,20 +33,9 @@ public class BrightnessManager : MonoBehaviour
         }
     }
 
-    private void Start()
+    public void SetImageBrightness(float a)
     {
-        brightnessSlider.onValueChanged.AddListener(OnSliderValueChanged);
-        SetImageBrightness(initialBrightnessValue);
-        brightnessSlider.value = initialBrightnessValue;
-    }
-
-    private void OnSliderValueChanged(float transparencyValue)
-    {
-        SetImageBrightness(transparencyValue);
-    }
-
-    private void SetImageBrightness(float a)
-    {
+        BrightnessValue = a;
         a = Mathf.Lerp(maxBrightnessValue, minBrightnessValue, a);
         a = Mathf.Clamp(a, minBrightnessValue, maxBrightnessValue);
         Color imageColor = brightnessImage.color;
