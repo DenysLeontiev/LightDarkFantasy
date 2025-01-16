@@ -7,7 +7,7 @@ public class PlayerAnimatorController : MonoBehaviour
     [SerializeField] private InputReader inputReader;
 
     private Animator playerAnimator;
-    private Knight playerMovement;
+    private PlayerBase playerMovement;
     private Health playerHealth;
 
     private readonly int isRunningHash = Animator.StringToHash("isRunning");
@@ -22,7 +22,7 @@ public class PlayerAnimatorController : MonoBehaviour
     private void Start()
     {
         playerAnimator = GetComponentInChildren<Animator>();
-        playerMovement = GetComponent<Knight>();
+        playerMovement = GetComponent<PlayerBase>();
         playerHealth = GetComponent<Health>();
 
         inputReader.OnMovementEvent += InputReader_OnMovementEvent;
@@ -49,6 +49,7 @@ public class PlayerAnimatorController : MonoBehaviour
         if (playerHealth.IsDead)
             return;
 
+        Debug.Log(playerMovement);
         playerAnimator.SetBool(isFallingHash, playerMovement.IsFalling);
         playerAnimator.SetBool(isClimbingHash, playerMovement.IsClimbing);
     }

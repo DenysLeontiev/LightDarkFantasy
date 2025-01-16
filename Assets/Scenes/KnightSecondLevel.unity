@@ -611,11 +611,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 897440317}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &120099310 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4069776821677390848, guid: f56ed5d42ad66134e82541386d01080c, type: 3}
-  m_PrefabInstance: {fileID: 1414823004}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &127690991
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7060,6 +7055,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: KnightPlayer
       objectReference: {fileID: 0}
+    - target: {fileID: 3052318013082055344, guid: f56ed5d42ad66134e82541386d01080c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4069776821677390848, guid: f56ed5d42ad66134e82541386d01080c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.74
@@ -8268,7 +8267,7 @@ PrefabInstance:
     - target: {fileID: 9180482408026673868, guid: b4895c079d3bf774abe1b0b91579f796, type: 3}
       propertyPath: m_Follow
       value: 
-      objectReference: {fileID: 120099310}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
