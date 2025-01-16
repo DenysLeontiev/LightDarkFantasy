@@ -14,11 +14,11 @@ public class Health : MonoBehaviour
 
     private int currentHealthAmount;
 
-    private Collider2D collider2D;
+    private Collider2D entityCollider2D;
 
     private void Start()
     {
-        collider2D = GetComponent<Collider2D>();
+        entityCollider2D = GetComponent<Collider2D>();
         currentHealthAmount = maxHealthAmount;
     }
 
@@ -29,8 +29,6 @@ public class Health : MonoBehaviour
 
         OnDamageTaken?.Invoke(this, EventArgs.Empty);
 
-        Debug.Log(transform.name);
-
         if (currentHealthAmount <= 0)
         {
             Die();
@@ -40,7 +38,7 @@ public class Health : MonoBehaviour
     private void Die()
     {
         OnDied?.Invoke(this, EventArgs.Empty);
-        collider2D.enabled = false;
+        entityCollider2D.enabled = false;
         IsDead = true;
     }
 }
