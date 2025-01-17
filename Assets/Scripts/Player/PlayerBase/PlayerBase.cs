@@ -13,8 +13,6 @@ public abstract class PlayerBase : MonoBehaviour
 
     protected Collider2D playerCollider2D;
 
-    protected Collider2D playerCollider2D;
-
     [Header("References")]
     [SerializeField] private Transform groundCheckTransform;
     [SerializeField] private InputReader inputReader;
