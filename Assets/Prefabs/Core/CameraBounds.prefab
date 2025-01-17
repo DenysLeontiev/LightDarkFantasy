@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9180160339869128924}
   - component: {fileID: 156836551152876909}
-  m_Layer: 9
+  m_Layer: 31
   m_Name: CameraBounds
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -76,9 +76,9 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 5.383169, y: 1.4197595}
-      - {x: -8.108001, y: 1.2515793}
-      - {x: -8.145893, y: -5.6076965}
-      - {x: 5.445671, y: -5.464948}
-      - {x: 5.5801816, y: -4.27509}
+    - - {x: 9.515659, y: 5.3528748}
+      - {x: -9.510458, y: 5.2524915}
+      - {x: -9.426934, y: -5.108788}
+      - {x: 5.5488133, y: -5.197384}
+      - {x: 9.463321, y: -5.117145}
   m_UseDelaunayMesh: 0
