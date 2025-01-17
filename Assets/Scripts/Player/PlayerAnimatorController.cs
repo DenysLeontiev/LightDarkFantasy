@@ -7,7 +7,7 @@ public class PlayerAnimatorController : MonoBehaviour
     [SerializeField] private InputReader inputReader;
 
     private Animator playerAnimator;
-    private Knight playerMovement;
+    private PlayerBase playerMovement;
     private Health playerHealth;
 
     private readonly int isRunningHash = Animator.StringToHash("isRunning");
@@ -17,11 +17,12 @@ public class PlayerAnimatorController : MonoBehaviour
     private readonly int isAttackingHash = Animator.StringToHash("shouldAttack");
     private readonly int isRunAttackingHash = Animator.StringToHash("shouldRunAttack");
     private readonly int getHitHash = Animator.StringToHash("getHit");
+    private readonly int dieHash = Animator.StringToHash("die");
 
     private void Start()
     {
         playerAnimator = GetComponentInChildren<Animator>();
-        playerMovement = GetComponent<Knight>();
+        playerMovement = GetComponent<PlayerBase>();
         playerHealth = GetComponent<Health>();
 
         inputReader.OnMovementEvent += InputReader_OnMovementEvent;
@@ -29,6 +30,7 @@ public class PlayerAnimatorController : MonoBehaviour
         inputReader.OnAttackEvent += InputReader_OnAttackEvent;
 
         playerHealth.OnDamageTaken += PlayerHealth_OnDamageTaken;
+        playerHealth.OnDied += PlayerHealth_OnDied;
     }
 
     private void OnDisable()
@@ -38,13 +40,17 @@ public class PlayerAnimatorController : MonoBehaviour
         inputReader.OnAttackEvent -= InputReader_OnAttackEvent;
 
         playerHealth.OnDamageTaken -= PlayerHealth_OnDamageTaken;
+        playerHealth.OnDied -= PlayerHealth_OnDied;
     }
 
 
     private void Update()
     {
-        playerAnimator.SetBool(isFallingHash, playerMovement.IsFalling);
+        if (playerHealth.IsDead)
+            return;
 
+        Debug.Log(playerMovement);
+        playerAnimator.SetBool(isFallingHash, playerMovement.IsFalling);
         playerAnimator.SetBool(isClimbingHash, playerMovement.IsClimbing);
     }
 
@@ -89,6 +95,10 @@ public class PlayerAnimatorController : MonoBehaviour
     private void PlayerHealth_OnDamageTaken(object sender, System.EventArgs e)
     {
         playerAnimator.SetTrigger(getHitHash);
-        Debug.Log("Get Hit");
+    }
+
+    private void PlayerHealth_OnDied(object sender, System.EventArgs e)
+    {
+        playerAnimator.SetTrigger(dieHash);
     }
 }

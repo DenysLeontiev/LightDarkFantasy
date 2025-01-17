@@ -9,11 +9,15 @@ public abstract class PlayerBase : MonoBehaviour
     public bool IsFalling { get; private set; }
     public bool IsClimbing => isStandingNearLadder && Mathf.Abs(moveInput.y) > 0f;
     public bool CanAttack => timeSinceLastAttack > timeBetweenAttacks;
+    public bool IsFacingRight { get; private set; } = true; // inital spirte facing direction
+
+    protected Collider2D playerCollider2D;
 
     [Header("References")]
     [SerializeField] private Transform groundCheckTransform;
     [SerializeField] private InputReader inputReader;
-    [SerializeField] private LayerMask isGroundedLayerMask; // Ground, Obstacle
+    [SerializeField] private LayerMask isGroundedLayerMask; // Ground, Obstacle, Enemy
+    [SerializeField] private LayerMask ladderLayerMask; // Ladder
 
     [Header("Movement Configs")]
     [SerializeField] private float movementSpeed = 2.5f;
@@ -22,11 +26,10 @@ public abstract class PlayerBase : MonoBehaviour
     [SerializeField] private float timeBetweenAttacks = 0.5f;
     [SerializeField] private float climbLadderSpeed = 40f;
 
+
     private Vector2 moveInput;
-    private Collider2D playerCollider2D;
     private Rigidbody2D playerRigidbody2D;
 
-    private bool isFacingRight = true; // inital spirte facind direction
     private float timeSinceLastAttack;
     private bool isStandingNearLadder;
 
@@ -44,6 +47,15 @@ public abstract class PlayerBase : MonoBehaviour
         inputReader.OnJumpEvent += InputReader_OnJumpEvent;
     }
 
+    private void Update()
+    {
+        isStandingNearLadder = playerCollider2D.IsTouchingLayers(ladderLayerMask);
+        timeSinceLastAttack += Time.deltaTime;
+        Flip();
+
+        HandleFallingState();
+    }
+
     private void OnDisable()
     {
         inputReader.OnMovementEvent -= InputReader_OnMovementEvent;
@@ -56,16 +68,6 @@ public abstract class PlayerBase : MonoBehaviour
         {
             HandleJump();
         }
-    }
-
-    [SerializeField] private LayerMask ladderLayerMask;
-    private void Update()
-    {
-        isStandingNearLadder = playerCollider2D.IsTouchingLayers(ladderLayerMask);
-        timeSinceLastAttack += Time.deltaTime;
-        Flip();
-
-        HandleFallingState();
     }
 
     private void FixedUpdate()
@@ -110,9 +112,9 @@ public abstract class PlayerBase : MonoBehaviour
 
     private void Flip()
     {
-        if (isFacingRight && moveInput.x < 0f || !isFacingRight && moveInput.x > 0f)
+        if (IsFacingRight && moveInput.x < 0f || !IsFacingRight && moveInput.x > 0f)
         {
-            isFacingRight = !isFacingRight;
+            IsFacingRight = !IsFacingRight;
             Vector3 localScale = transform.localScale;
             localScale.x *= -1f;
             transform.localScale = localScale;
