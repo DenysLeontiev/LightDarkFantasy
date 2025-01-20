@@ -1,18 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class CharacterSelectionButtonsHandler : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private Button knightButton;
+    [SerializeField] private Button mageButton;
+
+    private void Start()
     {
-        
+        knightButton.onClick.AddListener(() =>
+        {
+            StartCoroutine(WaitForKnightScene());
+        });
+
+        mageButton.onClick.AddListener(() =>
+        {
+            StartCoroutine(WaitForMageScene());
+        });
     }
 
-    // Update is called once per frame
-    void Update()
+    private IEnumerator WaitForKnightScene()
     {
-        
+        yield return StartCoroutine(MusicManager.Instance.PlayLightFantasy());
+        SceneManager.LoadScene(GameScene.KnightTutorialScene.ToString());
+    }
+
+    private IEnumerator WaitForMageScene()
+    {
+        yield return StartCoroutine(MusicManager.Instance.PlayLightFantasy());
+        SceneManager.LoadScene(GameScene.MageTutotialScene.ToString());
     }
 }

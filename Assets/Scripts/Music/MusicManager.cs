@@ -8,8 +8,17 @@ public class MusicManager : MonoBehaviour
 
     private AudioSource audioSource;
 
+    [Header("Clips")]
     [SerializeField] private AudioClip lightFantasyAudioClip;
     [SerializeField] private AudioClip darkFantasyAudioClip;
+
+    [Header("Configs")]
+    [SerializeField] private float increaseVolumeValue = 0.01f;
+    [SerializeField] private float waitTimeBetweenVolumeIncrease = 0.01f;
+    [Range(0f, 1f)]
+    [SerializeField] private float minVolumeValue = 0.0f;
+    [Range(0f, 1f)]
+    [SerializeField] private float maxVolumeValue = 1.0f;
 
     private void Awake()
     {
@@ -26,13 +35,33 @@ public class MusicManager : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
-    public void PlayLightFantasy()
+    public IEnumerator PlayLightFantasy()
     {
+        audioSource.Stop();
+        audioSource.volume = minVolumeValue;
         audioSource.PlayOneShot(lightFantasyAudioClip);
+
+        while (audioSource.volume < maxVolumeValue)
+        {
+            audioSource.volume += increaseVolumeValue;
+            yield return new WaitForSeconds(waitTimeBetweenVolumeIncrease);
+        }
+
+        audioSource.volume = maxVolumeValue;
     }
 
-    public void PlayDarkFantasy()
+    public IEnumerator PlayDarkFantasy()
     {
+        audioSource.Stop();
+        audioSource.volume = minVolumeValue;
         audioSource.PlayOneShot(darkFantasyAudioClip);
+
+        while (audioSource.volume < maxVolumeValue)
+        {
+            audioSource.volume += increaseVolumeValue;
+            yield return new WaitForSeconds(waitTimeBetweenVolumeIncrease);
+        }
+
+        audioSource.volume = maxVolumeValue;
     }
 }

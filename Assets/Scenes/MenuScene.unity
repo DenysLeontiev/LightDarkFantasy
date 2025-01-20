@@ -2566,6 +2566,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lightFantasyAudioClip: {fileID: 8300000, guid: 9382063733a7f284ba81625bb975db8c, type: 3}
   darkFantasyAudioClip: {fileID: 8300000, guid: 2766acd602c7338439f896d8ed7dd59e, type: 3}
+  increaseVolumeValue: 0.00005
+  waitTimeBetweenVolumeIncrease: 0.0001
+  minVolumeValue: 0
+  maxVolumeValue: 0.3
 --- !u!1 &1429330057
 GameObject:
   m_ObjectHideFlags: 0
