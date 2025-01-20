@@ -13,7 +13,7 @@ public class Mage : PlayerBase
     {
         GameObject projectileInstance = Instantiate(projectilePrefab, shootingPoint.position, Quaternion.identity);
         SpriteRenderer projectileSpriteRenderer = projectileInstance.GetComponent<SpriteRenderer>();
-        MageProjectile mageProjectile = projectileInstance.GetComponent<MageProjectile>();
+        Projectile mageProjectile = projectileInstance.GetComponent<Projectile>();
 
         bool shouldFlipSpriteOnX = IsFacingRight == false;
 

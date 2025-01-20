@@ -19,6 +19,7 @@ public class Health : MonoBehaviour
     private void Start()
     {
         entityCollider2D = GetComponent<Collider2D>();
+
         currentHealthAmount = maxHealthAmount;
     }
 

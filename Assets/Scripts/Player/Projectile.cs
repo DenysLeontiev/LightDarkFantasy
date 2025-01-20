@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Net.NetworkInformation;
 using UnityEngine;
 
-public class MageProjectile : MonoBehaviour
+public class Projectile : MonoBehaviour
 {
     [SerializeField] private int projectileDamage = 1;
     [SerializeField] private float moveSpeed = 1f;
