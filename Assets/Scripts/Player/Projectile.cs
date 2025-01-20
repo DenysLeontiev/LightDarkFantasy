@@ -8,7 +8,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] private int projectileDamage = 1;
     [SerializeField] private float moveSpeed = 1f;
     [SerializeField] private float destroyTimeAfterInitialization = 10f; // if it goest beyond the map, destroy it after destroyTimeAfterInitialization seconds
-    private bool isMovingRight = true;
+    [SerializeField] private bool isMovingRight = true;
 
     private void Start()
     {
@@ -19,6 +19,11 @@ public class Projectile : MonoBehaviour
     {
         Vector3 dir = isMovingRight ? transform.right : transform.right * (-1f);
         transform.position += moveSpeed * Time.deltaTime * dir;
+    }
+
+    public bool GetIsMovingRight()
+    {
+        return isMovingRight;
     }
 
     public void SetIsMovingRight(bool moveState)
@@ -37,5 +42,4 @@ public class Projectile : MonoBehaviour
 
         Destroy(this.gameObject);
     }
-
 }

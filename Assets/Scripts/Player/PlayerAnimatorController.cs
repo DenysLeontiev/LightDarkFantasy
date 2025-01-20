@@ -49,7 +49,6 @@ public class PlayerAnimatorController : MonoBehaviour
         if (playerHealth.IsDead)
             return;
 
-        Debug.Log(playerMovement);
         playerAnimator.SetBool(isFallingHash, playerMovement.IsFalling);
         playerAnimator.SetBool(isClimbingHash, playerMovement.IsClimbing);
     }
