@@ -214,6 +214,9 @@ MonoBehaviour:
   sphereJumpCheckRadius: 0.1
   timeBetweenAttacks: 1.5
   climbLadderSpeed: 50
+  fallenOutOfLevelAxisY: -30
+  shootingPoint: {fileID: 0}
+  projectilePrefab: {fileID: 0}
 --- !u!114 &5465747138856030625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -301,7 +304,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a804e29bbc49c984a992914ea7772939, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealthAmount: 10
+  maxHealthAmount: 3
 --- !u!1 &7126601654101157164
 GameObject:
   m_ObjectHideFlags: 0

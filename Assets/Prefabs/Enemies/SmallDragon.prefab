@@ -182,7 +182,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 7502404611961786011, guid: 78770fe47d166444485e1d9077d6099f, type: 3}
   attackPoint: {fileID: 3584674647912886393}
-  timeBetweenAttacks: 2
+  timeBetweenAttacks: 3
 --- !u!1 &7264207341547585572
 GameObject:
   m_ObjectHideFlags: 0
