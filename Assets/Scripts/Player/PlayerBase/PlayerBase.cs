@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public abstract class PlayerBase : MonoBehaviour
 {
@@ -26,6 +27,9 @@ public abstract class PlayerBase : MonoBehaviour
     [SerializeField] private float timeBetweenAttacks = 0.5f;
     [SerializeField] private float climbLadderSpeed = 40f;
 
+    [SerializeField] private float fallenOutOfLevelAxisY = -30f;
+
+    private Health playerHealth;
 
     private Vector2 moveInput;
     private Rigidbody2D playerRigidbody2D;
@@ -33,22 +37,29 @@ public abstract class PlayerBase : MonoBehaviour
     private float timeSinceLastAttack;
     private bool isStandingNearLadder;
 
+    private bool hasFallenOutOfLevel = false; // to prevent reloading current scene multiple times
+
     private void Awake()
     {
         timeSinceLastAttack = float.MaxValue; // so we can attack as soon as the game starts
 
         playerRigidbody2D = GetComponent<Rigidbody2D>();
         playerCollider2D = GetComponent<Collider2D>();
+        playerHealth = GetComponent<Health>();
     }
 
     private void Start()
     {
         inputReader.OnMovementEvent += InputReader_OnMovementEvent;
         inputReader.OnJumpEvent += InputReader_OnJumpEvent;
+        playerHealth.OnDied += PlayerHealth_OnDied;
+        
     }
 
     private void Update()
-    {
+    {  
+        HandleFallingOutOfLevel();
+
         isStandingNearLadder = playerCollider2D.IsTouchingLayers(ladderLayerMask);
         timeSinceLastAttack += Time.deltaTime;
         Flip();
@@ -132,6 +143,34 @@ public abstract class PlayerBase : MonoBehaviour
         moveInput = moveDir;
         IsIdle = moveDir.magnitude == 0;
         IsMoving = moveDir.magnitude != 0;
+    }
+
+    private void HandleFallingOutOfLevel()
+    {
+        if (!hasFallenOutOfLevel && transform.position.y < fallenOutOfLevelAxisY)
+        {
+            hasFallenOutOfLevel = true;
+            StartCoroutine(ReloadCurrentScene());
+        }
+    }
+
+    private IEnumerator ReloadCurrentScene()
+    {
+        DontDestroyOnLoad(gameObject);
+
+        Fader fader = FindObjectOfType<Fader>();
+        yield return fader.FadeOut();
+
+        yield return SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+        yield return new WaitForSeconds(1f);
+        yield return fader.FadeIn();
+
+        Destroy(gameObject);
+    }
+
+    private void PlayerHealth_OnDied(object sender, System.EventArgs e)
+    {
+        StartCoroutine(ReloadCurrentScene());
     }
 
     // Called in animation event

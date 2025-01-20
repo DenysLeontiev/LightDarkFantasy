@@ -6,6 +6,8 @@ public class MusicManager : MonoBehaviour
 {
     public static MusicManager Instance { get; private set; }
 
+    public const float TIME_TO_MAX_VOLUME = 3f;
+
     private AudioSource audioSource;
 
     [Header("Clips")]
@@ -13,8 +15,6 @@ public class MusicManager : MonoBehaviour
     [SerializeField] private AudioClip darkFantasyAudioClip;
 
     [Header("Configs")]
-    [SerializeField] private float increaseVolumeValue = 0.01f;
-    [SerializeField] private float waitTimeBetweenVolumeIncrease = 0.01f;
     [Range(0f, 1f)]
     [SerializeField] private float minVolumeValue = 0.0f;
     [Range(0f, 1f)]
@@ -33,35 +33,39 @@ public class MusicManager : MonoBehaviour
         }
 
         audioSource = GetComponent<AudioSource>();
+        audioSource.loop = true;
     }
 
-    public IEnumerator PlayLightFantasy()
+    public IEnumerator PlayLightFantasy(float durationInSeconds = TIME_TO_MAX_VOLUME)
     {
         audioSource.Stop();
         audioSource.volume = minVolumeValue;
         audioSource.PlayOneShot(lightFantasyAudioClip);
 
-        while (audioSource.volume < maxVolumeValue)
-        {
-            audioSource.volume += increaseVolumeValue;
-            yield return new WaitForSeconds(waitTimeBetweenVolumeIncrease);
-        }
-
-        audioSource.volume = maxVolumeValue;
+        yield return AdjustVolumeOverTime(maxVolumeValue, durationInSeconds);
     }
 
-    public IEnumerator PlayDarkFantasy()
+    public IEnumerator PlayDarkFantasy(float durationInSeconds = TIME_TO_MAX_VOLUME)
     {
         audioSource.Stop();
         audioSource.volume = minVolumeValue;
         audioSource.PlayOneShot(darkFantasyAudioClip);
 
-        while (audioSource.volume < maxVolumeValue)
+        yield return AdjustVolumeOverTime(maxVolumeValue, durationInSeconds);
+    }
+
+    private IEnumerator AdjustVolumeOverTime(float targetVolume, float duration)
+    {
+        float initialVolume = audioSource.volume;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < duration)
         {
-            audioSource.volume += increaseVolumeValue;
-            yield return new WaitForSeconds(waitTimeBetweenVolumeIncrease);
+            elapsedTime += Time.deltaTime;
+            audioSource.volume = Mathf.Lerp(initialVolume, targetVolume, elapsedTime / duration);
+            yield return null;
         }
 
-        audioSource.volume = maxVolumeValue;
+        audioSource.volume = targetVolume;
     }
 }

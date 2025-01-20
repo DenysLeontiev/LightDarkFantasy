@@ -10,9 +10,20 @@ public class MenuButtonsHandler : MonoBehaviour
 
     private void Start()
     {
-        startGameButton.onClick.AddListener(() =>
-        {
-            SceneManager.LoadScene(GameScene.SelectCharacterScene.ToString());
-        });
+        startGameButton.onClick.AddListener(() => StartCoroutine(LoadCharacterScene()));
+    }
+
+    private IEnumerator LoadCharacterScene()
+    {
+        DontDestroyOnLoad(gameObject);
+
+        Fader fader = FindObjectOfType<Fader>();
+        yield return fader.FadeOut();
+
+        yield return SceneManager.LoadSceneAsync(GameScene.SelectCharacterScene.ToString());
+        yield return new WaitForSeconds(1f);
+        yield return fader.FadeIn();
+
+        Destroy(gameObject);
     }
 }
