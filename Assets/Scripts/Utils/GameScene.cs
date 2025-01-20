@@ -5,7 +5,10 @@ using UnityEngine;
 public enum GameScene
 {
     MenuScene,
+    SelectCharacterScene,
     KnightTutorialScene,
     KnightFirstLevel,
-    KnightSecondLevel
+    KnightSecondLevel,
+    MageTutotialScene,
+    MageFirstLevel
 }
