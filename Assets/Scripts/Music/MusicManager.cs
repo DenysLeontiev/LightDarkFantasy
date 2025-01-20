@@ -6,7 +6,7 @@ public class MusicManager : MonoBehaviour
 {
     public static MusicManager Instance { get; private set; }
 
-    public const float TIME_TO_MAX_VOLUME = 3f;
+    public const float TIME_TO_MAX_VOLUME = 1f;
 
     private AudioSource audioSource;
 
@@ -38,18 +38,20 @@ public class MusicManager : MonoBehaviour
 
     public IEnumerator PlayLightFantasy(float durationInSeconds = TIME_TO_MAX_VOLUME)
     {
-        audioSource.Stop();
         audioSource.volume = minVolumeValue;
-        audioSource.PlayOneShot(lightFantasyAudioClip);
+        audioSource.clip = lightFantasyAudioClip;
+        audioSource.loop = true;
+        audioSource.Play();
 
         yield return AdjustVolumeOverTime(maxVolumeValue, durationInSeconds);
     }
 
     public IEnumerator PlayDarkFantasy(float durationInSeconds = TIME_TO_MAX_VOLUME)
     {
-        audioSource.Stop();
         audioSource.volume = minVolumeValue;
-        audioSource.PlayOneShot(darkFantasyAudioClip);
+        audioSource.clip = darkFantasyAudioClip;
+        audioSource.loop = true;
+        audioSource.Play();
 
         yield return AdjustVolumeOverTime(maxVolumeValue, durationInSeconds);
     }
