@@ -38,6 +38,9 @@ public class MusicManager : MonoBehaviour
 
     public IEnumerator PlayLightFantasy(float durationInSeconds = TIME_TO_MAX_VOLUME)
     {
+        if(audioSource.clip == lightFantasyAudioClip)
+            yield break;
+
         audioSource.volume = minVolumeValue;
         audioSource.clip = lightFantasyAudioClip;
         audioSource.loop = true;
@@ -48,6 +51,9 @@ public class MusicManager : MonoBehaviour
 
     public IEnumerator PlayDarkFantasy(float durationInSeconds = TIME_TO_MAX_VOLUME)
     {
+        if(audioSource.clip == darkFantasyAudioClip)
+            yield break;
+
         audioSource.volume = minVolumeValue;
         audioSource.clip = darkFantasyAudioClip;
         audioSource.loop = true;
