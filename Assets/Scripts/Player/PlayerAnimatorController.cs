@@ -19,12 +19,15 @@ public class PlayerAnimatorController : MonoBehaviour
     private readonly int getHitHash = Animator.StringToHash("getHit");
     private readonly int dieHash = Animator.StringToHash("die");
 
+    private void Awake()
+    {
+        playerMovement = GetComponent<PlayerBase>();
+        playerAnimator = GetComponentInChildren<Animator>();
+        playerHealth = GetComponent<Health>();
+    }
+
     private void Start()
     {
-        playerAnimator = GetComponentInChildren<Animator>();
-        playerMovement = GetComponent<PlayerBase>();
-        playerHealth = GetComponent<Health>();
-
         inputReader.OnMovementEvent += InputReader_OnMovementEvent;
         inputReader.OnJumpEvent += InputReader_OnJumpEvent;
         inputReader.OnAttackEvent += InputReader_OnAttackEvent;

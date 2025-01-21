@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -53,18 +54,16 @@ public abstract class PlayerBase : MonoBehaviour
         inputReader.OnMovementEvent += InputReader_OnMovementEvent;
         inputReader.OnJumpEvent += InputReader_OnJumpEvent;
         playerHealth.OnDied += PlayerHealth_OnDied;
-        
     }
 
     private void Update()
-    {  
-        HandleFallingOutOfLevel();
-
+    {
         isStandingNearLadder = playerCollider2D.IsTouchingLayers(ladderLayerMask);
         timeSinceLastAttack += Time.deltaTime;
         Flip();
 
         HandleFallingState();
+        HandleFallingOutOfLevel();
     }
 
     private void OnDisable()
@@ -161,7 +160,9 @@ public abstract class PlayerBase : MonoBehaviour
         Fader fader = FindObjectOfType<Fader>();
         yield return fader.FadeOut();
 
-        yield return SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+        // Load tutotrial for appropriate character
+        //GameScene sceneToLoad = SceneManager.GetActiveScene().name.Contains("Knight") ? GameScene.KnightTutorialScene : GameScene.MageTutotialScene;
+        yield return SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
         yield return new WaitForSeconds(1f);
         yield return fader.FadeIn();
 

@@ -34,28 +34,28 @@ public abstract class PatrolEnemyBase : MonoBehaviour
 
     private bool hasDiedAnimationPlayed = false;
 
-    private void Start()
+    private void Awake()
     {
-        Debug.Log("Start from " + transform.name);
-
         enemyAnimator = GetComponent<Animator>();
         enemyCollider = GetComponent<Collider2D>();
         enemyHealth = GetComponent<Health>();
+    }
 
+    private void Start()
+    {
+        attackTarget = FindObjectOfType<PlayerBase>();
         attackPoint = transform.Find("AttackPoint");
 
         state = EnemyState.Idle;
 
         currentWaypointIndex = 0;
 
-        if(waypoints.Count != 0)
+        if (waypoints.Count != 0)
         {
             targetWaypoint = waypoints[currentWaypointIndex];
             targetPosition = new Vector2(targetWaypoint.position.x, transform.position.y);
         }
         timeSinceLastAttack = float.MaxValue; // so we can attack right away
-
-        attackTarget = FindObjectOfType<PlayerBase>();
 
         enemyHealth.OnDamageTaken += EnemyHealth_OnDamageTaken;
         enemyHealth.OnDied += EnemyHealth_OnDied;
@@ -69,8 +69,14 @@ public abstract class PatrolEnemyBase : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("Update from " + transform.name);
-        if(hasDiedAnimationPlayed)
+        // TODO: Refactor attackTarget init in PatrolEnemyBase
+        // Not the most efficient way, can at least add timer in order not to check dozens of times per prefame
+        if (attackTarget == null)
+        {
+            attackTarget = FindObjectOfType<PlayerBase>();
+        }
+
+        if (hasDiedAnimationPlayed)
         {
             enemyAnimator.SetTrigger(dieHash);
             hasDiedAnimationPlayed = false;
@@ -124,7 +130,7 @@ public abstract class PatrolEnemyBase : MonoBehaviour
 
     private void HandleWalkState()
     {
-        if(targetWaypoint == null)
+        if (targetWaypoint == null)
         {
             return;
         }
