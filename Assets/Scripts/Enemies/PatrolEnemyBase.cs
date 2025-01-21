@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public abstract class PatrolEnemyBase : MonoBehaviour
@@ -48,7 +46,7 @@ public abstract class PatrolEnemyBase : MonoBehaviour
 
         state = EnemyState.Idle;
 
-        currentWaypointIndex = Random.Range(0, waypoints.Count - 1);
+        currentWaypointIndex = 0;
 
         if(waypoints.Count != 0)
         {
