@@ -10,8 +10,12 @@ public class CharacterSelectionButtonsHandler : MonoBehaviour
     [SerializeField] private Button knightButton;
     [SerializeField] private Button mageButton;
 
+    private CanvasGroup characterSelectionCanvasGroup;
+
     private void Start()
     {
+        characterSelectionCanvasGroup = GetComponent<CanvasGroup>();
+
         knightButton.onClick.AddListener(() =>
         {
             StartCoroutine(WaitForKnightScene());
@@ -43,6 +47,7 @@ public class CharacterSelectionButtonsHandler : MonoBehaviour
         yield return fader.FadeOut();
 
         yield return SceneManager.LoadSceneAsync(desiredGameScene.ToString());
+        characterSelectionCanvasGroup.alpha = 0.0f; // so old canvas does not interfere with new scene
         yield return new WaitForSeconds(1f);
         yield return fader.FadeIn();
 
