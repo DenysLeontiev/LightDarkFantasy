@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 274514678341682871}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.332, y: -0.019, z: 0}
+  m_LocalPosition: {x: 0.563, y: -0.019, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -161,9 +161,9 @@ GameObject:
   - component: {fileID: 4199183626210197779}
   - component: {fileID: 3539609526169757536}
   - component: {fileID: 5465747138856030625}
+  - component: {fileID: 9006006241195128630}
   - component: {fileID: 3100757025620045040}
   - component: {fileID: 919201069207691936}
-  - component: {fileID: 9006006241195128630}
   m_Layer: 8
   m_Name: MagePlayer
   m_TagString: Untagged
@@ -212,11 +212,11 @@ MonoBehaviour:
   movementSpeed: 1
   jumpSpeed: 5
   sphereJumpCheckRadius: 0.1
-  timeBetweenAttacks: 1.5
+  timeBetweenAttacks: 2.2
   climbLadderSpeed: 50
   fallenOutOfLevelAxisY: -30
-  shootingPoint: {fileID: 0}
-  projectilePrefab: {fileID: 0}
+  shootingPoint: {fileID: 612003599079928388}
+  projectilePrefab: {fileID: 1388525791123844642, guid: 0a926aea4af049541bfb44da2f39afbe, type: 3}
 --- !u!114 &5465747138856030625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -230,6 +230,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputReader: {fileID: 11400000, guid: 354d338ca64899845a15c3193feeecef, type: 2}
+--- !u!114 &9006006241195128630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4759804473714893461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a804e29bbc49c984a992914ea7772939, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealthAmount: 2
 --- !u!70 &3100757025620045040
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -292,19 +305,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &9006006241195128630
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4759804473714893461}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a804e29bbc49c984a992914ea7772939, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealthAmount: 3
 --- !u!1 &7126601654101157164
 GameObject:
   m_ObjectHideFlags: 0

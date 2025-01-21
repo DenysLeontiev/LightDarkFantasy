@@ -813,11 +813,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6230322868590268281, guid: 17b214f3593685741b1e866dc1491c6a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.3822179
+      value: -1.67975
       objectReference: {fileID: 0}
     - target: {fileID: 6230322868590268281, guid: 17b214f3593685741b1e866dc1491c6a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.15241
+      value: -1.15283
       objectReference: {fileID: 0}
     - target: {fileID: 6230322868590268281, guid: 17b214f3593685741b1e866dc1491c6a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2645,22 +2645,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3539609526169757536, guid: 05d6e868a9bcd404588093ceb8dc5808, type: 3}
-      propertyPath: shootingPoint
-      value: 
-      objectReference: {fileID: 833839165}
-    - target: {fileID: 3539609526169757536, guid: 05d6e868a9bcd404588093ceb8dc5808, type: 3}
-      propertyPath: projectilePrefab
-      value: 
-      objectReference: {fileID: 1388525791123844642, guid: 0a926aea4af049541bfb44da2f39afbe, type: 3}
-    - target: {fileID: 3539609526169757536, guid: 05d6e868a9bcd404588093ceb8dc5808, type: 3}
-      propertyPath: timeBetweenAttacks
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4199183626210197779, guid: 05d6e868a9bcd404588093ceb8dc5808, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4199183626210197779, guid: 05d6e868a9bcd404588093ceb8dc5808, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.97
@@ -2705,10 +2689,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: MagePlayer
       objectReference: {fileID: 0}
-    - target: {fileID: 9006006241195128630, guid: 05d6e868a9bcd404588093ceb8dc5808, type: 3}
-      propertyPath: hitPushForce
-      value: 100
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2717,11 +2697,6 @@ PrefabInstance:
 --- !u!4 &833839164 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4199183626210197779, guid: 05d6e868a9bcd404588093ceb8dc5808, type: 3}
-  m_PrefabInstance: {fileID: 833839163}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &833839165 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 612003599079928388, guid: 05d6e868a9bcd404588093ceb8dc5808, type: 3}
   m_PrefabInstance: {fileID: 833839163}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &838765273
