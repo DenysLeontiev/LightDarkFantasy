@@ -38,6 +38,8 @@ public abstract class PatrolEnemyBase : MonoBehaviour
 
     private void Start()
     {
+        Debug.Log("Start from " + transform.name);
+
         enemyAnimator = GetComponent<Animator>();
         enemyCollider = GetComponent<Collider2D>();
         enemyHealth = GetComponent<Health>();
@@ -69,6 +71,7 @@ public abstract class PatrolEnemyBase : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log("Update from " + transform.name);
         if(hasDiedAnimationPlayed)
         {
             enemyAnimator.SetTrigger(dieHash);
