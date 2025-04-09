@@ -10,5 +10,6 @@ public enum GameScene
     KnightFirstLevel,
     KnightSecondLevel,
     MageTutotialScene,
-    MageFirstLevel
+    MageFirstLevel,
+    MageSecondScene
 }

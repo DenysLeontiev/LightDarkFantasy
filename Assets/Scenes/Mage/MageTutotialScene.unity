@@ -6407,6 +6407,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: 2DUICanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 2086557495813782363, guid: 2e286e191256d554db07c3c77dd9067f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7910526791709481007, guid: 2e286e191256d554db07c3c77dd9067f, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -2.52
@@ -9486,7 +9490,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6230322868590268281, guid: 17b214f3593685741b1e866dc1491c6a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.3792235
+      value: -1.3768067
       objectReference: {fileID: 0}
     - target: {fileID: 6230322868590268281, guid: 17b214f3593685741b1e866dc1491c6a, type: 3}
       propertyPath: m_LocalPosition.y
