@@ -21,8 +21,6 @@ public class MusicManager : MonoBehaviour
     [Header("Configs")]
     [Range(0f, 1f)]
     [SerializeField] private float minVolumeValue = 0.0f;
-    [Range(0f, 1f)]
-    [SerializeField] private float maxVolumeValue = 1.0f;
 
     private void Awake()
     {
