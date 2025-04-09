@@ -9,7 +9,7 @@ public class BrightnessManager : MonoBehaviour
 {
     public static BrightnessManager Instance { get; private set; }
 
-    public float BrightnessValue { get; private set; }
+    public float CurrentBrightnessValue { get; private set ; }
 
     [SerializeField] private Image brightnessImage;
 
@@ -19,7 +19,7 @@ public class BrightnessManager : MonoBehaviour
 
     private void Awake()
     {
-        BrightnessValue = initialBrightnessValue;
+        CurrentBrightnessValue = initialBrightnessValue;
         SetImageBrightness(initialBrightnessValue);
 
         if (Instance != null && Instance != this) // Destroy another object
@@ -35,7 +35,7 @@ public class BrightnessManager : MonoBehaviour
 
     public void SetImageBrightness(float a)
     {
-        BrightnessValue = a;
+        CurrentBrightnessValue = a;
         a = Mathf.Lerp(maxBrightnessValue, minBrightnessValue, a);
         a = Mathf.Clamp(a, minBrightnessValue, maxBrightnessValue);
         Color imageColor = brightnessImage.color;
