@@ -4816,10 +4816,15 @@ MonoBehaviour:
     gameScene: 5
     index: 3
     isDarkFantasy: 1
-  - levelDisplayName: Deadly Cave
+  - levelDisplayName: Dungeon Master
     levelSprite: {fileID: 21300000, guid: a0179b74cce211842bf9ca36856d231c, type: 3}
     gameScene: 6
     index: 4
+    isDarkFantasy: 1
+  - levelDisplayName: Deadly Cave
+    levelSprite: {fileID: 21300000, guid: a0179b74cce211842bf9ca36856d231c, type: 3}
+    gameScene: 7
+    index: 5
     isDarkFantasy: 1
 --- !u!225 &1725072252
 CanvasGroup:

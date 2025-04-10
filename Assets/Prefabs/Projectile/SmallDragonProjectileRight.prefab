@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3490137474644929757}
   - component: {fileID: -2844149488638568771}
   m_Layer: 0
-  m_Name: SmallDragonProjectile
+  m_Name: SmallDragonProjectileRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -102,7 +102,7 @@ MonoBehaviour:
   projectileDamage: 1
   moveSpeed: 3.5
   destroyTimeAfterInitialization: 10
-  isMovingRight: 0
+  isMovingRight: 1
 --- !u!70 &3490137474644929757
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
